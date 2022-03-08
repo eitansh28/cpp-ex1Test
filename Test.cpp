@@ -1,6 +1,6 @@
 //  * AUTHORS: <Eitan Shenkolevski>
 //  * 
-//  * Date: 2021-02
+//  * Date: 2021-03
 //  */
 
 #include "doctest.h"
@@ -121,4 +121,8 @@ TEST_CASE("Bad input") {
     CHECK_THROWS(mat(3, 0, '#', '%'));
     CHECK_THROWS(mat(0, 7, '#', '%'));
     CHECK_THROWS(mat(0, 0, '#', '%'));
+    CHECK_THROWS(mat(9, 5, '\n', '%'));
+    CHECK_THROWS(mat(3, 7, '#', '\r'));
+    CHECK_THROWS(mat(3, 7, ' ', '%'));
+    CHECK_THROWS(mat(11, 15, '#', '\t'));
 }
