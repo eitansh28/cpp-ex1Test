@@ -25,7 +25,7 @@ string nospaces(string input) {
 
 
 TEST_CASE("Good input") {
-	CHECK(nospaces(mat(9, 7, '@', '-')) == nospaces("@@@@@@@@@\n"
+	CHECK(nospaces(mat(9, 7, '@', '-')) == nospaces("@@@@@@@@@\n"   //More columns than rows
 													 "@-------@\n"
 													 "@-@@@@@-@\n"
 													 "@-@---@-@\n"
@@ -37,17 +37,17 @@ TEST_CASE("Good input") {
                                                 "%!%%%%%%%!%\n"
                                                 "%!!!!!!!!!%\n"
                                                 "%%%%%%%%%%%"));
-    CHECK(nospaces(mat(1,5,'%','!'))== nospaces("%\n"
+    CHECK(nospaces(mat(1,5,'%','!'))== nospaces("%\n"   //1 column
                                                 "%\n"
                                                 "%\n"
                                                 "%\n"
                                                 "%\n"));
-    CHECK(nospaces(mat(7,1,'&','!'))==nospaces("&&&&&&&"));
+    CHECK(nospaces(mat(7,1,'&','!'))==nospaces("&&&&&&&"));  //1 row
 
     CHECK(nospaces(mat(3,3,'*','@'))==nospaces("***\n"
                                                "*@*\n"
                                                "***"));
-    CHECK(nospaces(mat(1, 1, '^', '-')) == nospaces("^"));
+    CHECK(nospaces(mat(1, 1, '^', '-')) == nospaces("^"));  //1 row && 1 column
 
     CHECK(nospaces(mat(53, 19, '%', '!')) ==   nospaces("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
                                                         "%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%"
@@ -69,7 +69,7 @@ TEST_CASE("Good input") {
                                                         "%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%"
                                                         "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")); 
 
-    CHECK(nospaces(mat(5,7,'*','('))==nospaces("*****"
+    CHECK(nospaces(mat(5,7,'*','('))==nospaces("*****"   //More rows than columns
                                                "*(((*"
                                                "*(*(*"
                                                "*(*(*"
@@ -84,7 +84,7 @@ TEST_CASE("Good input") {
     CHECK(nospaces(mat(13,3,'%','!'))==nospaces("%%%%%%%%%%%%%"
                                                 "%!!!!!!!!!!!%"
                                                 "%%%%%%%%%%%%%"));
-    CHECK(nospaces(mat(77,25,'@','^')) ==  nospaces("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    CHECK(nospaces(mat(77,25,'@','^')) ==  nospaces("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" //large numbers
                                                     "@^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^@"
                                                     "@^@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@^@"
                                                     "@^@^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^@^@"
@@ -112,16 +112,16 @@ TEST_CASE("Good input") {
 }
 
 TEST_CASE("Bad input") {
-    CHECK_THROWS(mat(10, 5, '$', '%'));
+    CHECK_THROWS(mat(10, 5, '$', '%')); //tests with even numbers
     CHECK_THROWS(mat(9, 4, '!', '#'));
     CHECK_THROWS(mat(8, 4, '!', '#'));
-    CHECK_THROWS(mat(-5, -7, '#', '%'));
+    CHECK_THROWS(mat(-5, -7, '#', '%')); //tests with negative numbers
     CHECK_THROWS(mat(-3, 5, '#', '%'));
     CHECK_THROWS(mat(9, -5, '!', '%'));
-    CHECK_THROWS(mat(3, 0, '#', '%'));
+    CHECK_THROWS(mat(3, 0, '#', '%'));  //tests with zeros
     CHECK_THROWS(mat(0, 7, '#', '%'));
     CHECK_THROWS(mat(0, 0, '#', '%'));
-    CHECK_THROWS(mat(9, 5, '\n', '%'));
+    CHECK_THROWS(mat(9, 5, '\n', '%'));  //tests with bad symbol
     CHECK_THROWS(mat(3, 7, '#', '\r'));
     CHECK_THROWS(mat(3, 7, ' ', '%'));
     CHECK_THROWS(mat(11, 15, '#', '\t'));
